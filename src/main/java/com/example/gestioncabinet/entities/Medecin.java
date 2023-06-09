@@ -19,5 +19,5 @@ public class Medecin {
     private String email;
     private String tel;
     @OneToMany(mappedBy = "medecin")
-    private Collection<Consultation> consultations;
+    private List<Consultation> consultations;
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout">
+  <head>
+      <meta charset="UTF-8">
+      <title>Nouveau Patient</title>
+    <style>
+      h1{
+        font-size: xx-large;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div layout:fragment="content">
+      <h1>Nouveau Patient :</h1>
+      <form action="#" th:action="@{/savePatient}" method="post" th:object="${patient}">
+        <label for="nom" class="form-label">Nom : </label>
+        <input type="text" name="nom" id="nom" class="form-control" th:field="*{nom}" required>
+        <label for="prenom" class="form-label">Prénom : </label>
+        <input type="text" name="prenom" id="prenom" class="form-control" th:field="*{prenom}" required>
+        <label for="cin" class="form-label">CIN : </label>
+        <input type="text" name="cin" id="cin" class="form-control" th:field="*{cin}" required>
+        <label for="tel" class="form-label">Télephone : </label>
+        <input type="tel" name="tel" id="tel" class="form-control" th:field="*{tel}" required>
+        <label for="email" class="form-label">Adresse e-mail : </label>
+        <input type="email" name="email" id="email" class="form-control" th:field="*{email}">
+        <label for="nom" class="form-label">Date de naissance : </label>
+        <input type="date" name="date" id="date" class="form-control" th:field="*{dateNaissance}">
+        <button type="submit" class="btn btn-primary mr-4 my-3">Ajouter</button>
+        <button type="reset" class="btn btn-dark my-3">Effacer</button>
+      </form>
+    </div>
+  </body>
+</html>

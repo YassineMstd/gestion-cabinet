@@ -18,13 +18,15 @@ public interface ICabinetService {
     //Service Medecin
     void addMedecin(Medecin medecin);
     List<Medecin> getAllMedecins();
+    List<Medecin> getMedecinsByQuery(String q);
     void deleteMedecinById(Long id);
     List<Consultation> getConsultationsByMedecin(Medecin medecin);
 
     //Service Consultation
     void addConsultation (Consultation consultation);
     List<Consultation> getAllConsultations();
-    void deleteConsultation(Consultation consultation);
+    void deleteConsultationById(Long id);
+    List<Consultation> getConsultationsByQuery(String q);
     Patient getPatientById(Long id);
     Medecin getMedecinById(Long id);
     Consultation getConsultationById(Long id);

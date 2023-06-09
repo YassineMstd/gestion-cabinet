@@ -28,7 +28,7 @@ public class CabinetServiceImp implements ICabinetService {
 
     @Override
     public List<Patient> getPatientsByQuery(String q) {
-        return null; //patientRepository.findPatientsByNomContainsOrPrenomContainsOrEmailContainsOrCinContains(q);
+        return patientRepository.findPatientsByNomContainsOrPrenomContains(q,q);
     }
 
     @Override
@@ -55,6 +55,10 @@ public class CabinetServiceImp implements ICabinetService {
     public List<Medecin> getAllMedecins() {
         return medecinRepository.findAll();
     }
+    @Override
+    public List<Medecin> getMedecinsByQuery(String q) {
+        return medecinRepository.findMedecinsByNomContainsOrPrenomContains(q,q);
+    }
 
     @Override
     public void deleteMedecinById(Long id) {
@@ -77,8 +81,13 @@ public class CabinetServiceImp implements ICabinetService {
     }
 
     @Override
-    public void deleteConsultation(Consultation consultation) {
-        consultationRepository.delete(consultation);
+    public List<Consultation> getConsultationsByQuery(String q){
+        return consultationRepository.findConsultationsByMedecinNomContainsOrPatientNomContains(q,q);
+    }
+
+    @Override
+    public void deleteConsultationById(Long id) {
+        consultationRepository.deleteById(id);
     }
 
     @Override

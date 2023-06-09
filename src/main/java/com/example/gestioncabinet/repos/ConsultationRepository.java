@@ -10,4 +10,6 @@ import java.util.List;
 public interface ConsultationRepository extends JpaRepository<Consultation, Long> {
     //List<Consultation> findConsultationsByPatient(Patient patient);
     //List<Consultation> findConsultationsByMedecin(Medecin medecin);
+    List<Consultation> findConsultationsByMedecinNomContainsOrPatientNomContains(String query, String query2);
+
 }

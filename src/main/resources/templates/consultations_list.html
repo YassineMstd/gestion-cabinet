@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Patients</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <a href="/addConsultation" class="btn btn-primary p-2">Ajouter une consultation</a>
+    <h1>Liste des consultation</h1>
+    <form action="/consultations" method="get" class="d-flex w-25">
+        <input class="form-control me-sm-2" type="search" name="search" id="search"
+               placeholder="Entrez votre mot clé...">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
+    </form>
+
+    <table class="table table-bordered table-hover my-4">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date de consultation</th>
+            <th>Description</th>
+            <th>Patient</th>
+            <th>Medecin</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(consultations)}">
+            <td colspan="5">Aucune consultation trouvée, veuillez l'ajouter... !</td>
+            <td>
+                <a href="/addConsultation" class="btn btn-primary py-0">Ajouter</a>
+            </td>
+        </tr>
+        <tr th:each="c:${consultations}">
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.dateConsultation}"></td>
+            <td th:text="${c.description}"></td>
+            <td><a th:href="@{/patients(search=${c.patient.nom})}" th:text="${c.patient.nom}" class="text-decoration-none"></a></td>
+            <td><a th:href="@{/medecins(search=${c.medecin.nom})}" th:text="${c.medecin.nom}" class="text-decoration-none"></a></td>
+
+            <td><a th:href="@{/deleteConsultation(id=${c.id})}" class="btn btn-danger py-0">Supprimer</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

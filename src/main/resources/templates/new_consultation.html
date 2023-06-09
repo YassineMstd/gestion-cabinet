@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouveau Patient</title>
+    <style>
+        h1{
+            font-size: xx-large;
+        }
+    </style>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h1>Nouvelle Consultation :</h1>
+    <form action="/#" th:action="@{/saveConsultation}" method="post" th:object="${consultation}">
+        <label for="dateC" class="form-label">Date de consultation : </label>
+        <input type="date" name="dateC" id="dateC" class="form-control" th:field="*{dateConsultation}" required>
+        <label for="desc" class="form-label">Description : </label>
+        <input type="text" name="desc" id="desc" class="form-control" th:field="*{description}" required>
+        <label for="patient" class="form-label">Patient : </label>
+        <select id="patient" class="form-control" th:field="*{patient.id}" required>
+            <option value="" hidden>
+                Veuillez choisir un patient
+            </option>
+            <option
+                    th:each="p:${patients}"
+                    th:value="${p.id}"
+                    th:text="${p.nom}"
+                    >
+            </option>
+        </select>
+        <label for="medecin" class="form-label">Medecin : </label>
+        <select id="medecin"  class="form-control" th:field="*{medecin.id}" required>
+            <option value="" hidden>
+                Veuillez choisir un medecin
+            </option>
+            <option
+                    th:each="m:${medecins}"
+                    th:text="${m.nom}"
+                    th:value='${m.id}'>
+            </option>
+        </select>
+        <button type="submit" class="btn btn-primary mr-4 my-3">Ajouter</button>
+        <button type="reset" class="btn btn-dark my-3">Effacer</button>
+    </form>
+</div>
+</body>
+</html>

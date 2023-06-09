@@ -2,8 +2,12 @@ package com.example.gestioncabinet.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+
 @Entity @NoArgsConstructor @AllArgsConstructor @Data @ToString
 @Table(name = "PATIENTS")
 public class Patient {
@@ -15,8 +19,9 @@ public class Patient {
     private String cin;
     private String tel;
     private String email;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date dateNaissance;
     @OneToMany(mappedBy = "patient")
-    private Collection<Consultation> consultations;
+    private List<Consultation> consultations;
 }
